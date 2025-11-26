@@ -16,10 +16,9 @@ source venv/bin/activate   # Mac/Linux
 # Install dependencies
 pip install -r requirements.txt
 playwright install
+
 Run tests:
 
-bash
-Copy code
 # K6 tests
 k6 run k6/rest/restcountries-smoke.js
 k6 run k6/graphql/rickmorty-characters.js
