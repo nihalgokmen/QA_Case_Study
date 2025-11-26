@@ -19,7 +19,7 @@ jobs:
           sudo apt-get install -y k6
 
       - name: Run REST test
-        run: k6 run k6/rest/restcountries.js
+        run: k6 run k6/rest/restcountries-smoke.js
 
       - name: Run GraphQL test
         run: k6 run k6/graphql/rickmorty-characters.js
