@@ -1,0 +1,38 @@
+name: Playwright E2E Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r playwright-python/requirements.txt
+          python -m playwright install
+
+      - name: Run tests
+        run: |
+          cd playwright-python
+          pytest tests/ -q
+      - name: Upload artifacts (screenshots & videos)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-artifacts
+          path: |
+            playwright-python/screenshots
+            playwright-python/videos
+            playwright-python/traces
