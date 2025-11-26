@@ -5,7 +5,7 @@
 Clone the repository and set up the environment:
 
 ```bash
-git clone <repo-link>
+git clone https://github.com/nihalgokmen/QA_Case_Study.git
 cd qa-case-study
 
 # Python virtual environment
@@ -14,7 +14,7 @@ source venv/bin/activate   # Mac/Linux
 # venv\Scripts\activate    # Windows
 
 # Install dependencies
-pip install -r playwright-python/requirements.txt
+pip install -r requirements.txt
 playwright install
 Run tests:
 
@@ -26,9 +26,13 @@ k6 run k6/graphql/rickmorty-characters.js
 
 # Playwright E2E tests
 pytest playwright-python/tests/ 
+
 ```
 
-## Test Strategy
+CI / GitHub Actions
+Workflows run automatically on Pull Requests
+
+## Integration Tests
 Integration Tests (K6, JS)
 Tests are executed on REST and GraphQL public APIs:
 
@@ -36,12 +40,11 @@ REST: Rest Countries v3
 
 GraphQL: Rick & Morty GraphQL
 
-## Scenarios tested include happy-path and edge cases, response time SLAs, schema validation, functional assertions, error handling, and basic load testing.
+Include happy-path and edge cases, response time SLAs, schema validation, functional assertions, error handling, and basic load testing.
 
+## E2E Tests
 E2E Tests (Playwright, Python)
 Demo site: SauceDemo
-
-## Scenarios tested:
 
 Login success/failure
 
@@ -51,16 +54,8 @@ Add to cart and checkout (payment step excluded)
 
 Optional accessibility checks
 
-Flakiness controls include using stable selectors (data-test attributes), explicit waits, and retries. Screenshots, videos, or traces are captured on failures.
+Screenshots, videos, or traces are captured on failures.
 
-CI / GitHub Actions
-Workflows run automatically on Pull Requests:
-
-K6 tests: k6-integration.yml
-
-Playwright tests: playwright-e2e.yml
-
-Test artifacts (screenshots/videos) are available on failures. K6 performance thresholds are logged in the workflow.
 
 ## Notes
 Tests are isolated and idempotent, not dependent on mutable server state
