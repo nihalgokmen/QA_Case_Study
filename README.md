@@ -25,9 +25,8 @@ k6 run k6/rest/restcountries-smoke.js
 k6 run k6/graphql/rickmorty-characters.js
 
 # Playwright E2E tests
-pytest playwright-python/tests/
-
-```bash
+pytest playwright-python/tests/ 
+```
 
 ## Test Strategy
 Integration Tests (K6, JS)
