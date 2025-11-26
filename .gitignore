@@ -21,6 +21,10 @@ venv/
 # Playwright
 playwright-report/
 test-results/
+playwright-python/screenshots
+playwright-python/videos
+playwright-python/traces
+
 
 # k6
 *.out
