@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+*.sqlite3
+*.db
+*.DS_Store
+
+# Virtual environment
+venv/
+.env
+
+# Playwright
+playwright-report/
+test-results/
+
+# k6
+*.out
+
+# VS Code
+.vscode/
