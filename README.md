@@ -26,7 +26,10 @@ k6 run k6/graphql/rickmorty-characters.js
 
 # Playwright E2E tests
 pytest playwright-python/tests/
-Test Strategy
+
+```bash
+
+## Test Strategy
 Integration Tests (K6, JS)
 Tests are executed on REST and GraphQL public APIs:
 
@@ -34,12 +37,12 @@ REST: Rest Countries v3
 
 GraphQL: Rick & Morty GraphQL
 
-Scenarios tested include happy-path and edge cases, response time SLAs, schema validation, functional assertions, error handling, and basic load testing.
+## Scenarios tested include happy-path and edge cases, response time SLAs, schema validation, functional assertions, error handling, and basic load testing.
 
 E2E Tests (Playwright, Python)
 Demo site: SauceDemo
 
-Scenarios tested:
+## Scenarios tested:
 
 Login success/failure
 
@@ -60,7 +63,7 @@ Playwright tests: playwright-e2e.yml
 
 Test artifacts (screenshots/videos) are available on failures. K6 performance thresholds are logged in the workflow.
 
-Notes
+## Notes
 Tests are isolated and idempotent, not dependent on mutable server state
 
 Pytest markers (login, checkout) are registered in pytest.ini
