@@ -1,6 +1,0 @@
-{
-  "label": "K6 Smoke All",
-  "type": "shell",
-  "command": "k6 run k6/rest/restcountries-smoke.js && k6 run k6/graphql/rickmorty-characters.js",
-  "group": "build"
-}

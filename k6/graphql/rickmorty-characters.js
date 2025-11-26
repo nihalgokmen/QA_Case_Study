@@ -14,7 +14,6 @@ export const options = {
 const URL = 'https://rickandmortyapi.com/graphql';
 
 export default function () {
-  // happy path: characters list
   group('GraphQL: characters list', () => {
     const query = JSON.stringify({ query: '{ characters(page:1) { results { id name status species } } }' });
     const r = http.post(URL, query, { headers: { 'Content-Type': 'application/json' } });
@@ -41,7 +40,6 @@ export default function () {
     sleep(0.5);
   });
 
-  // schema negative test: malformed query -> expect 400-ish or GraphQL error
   group('GraphQL: malformed query', () => {
     const bad = JSON.stringify({ query: '{ unknownField }' });
     const r = http.post(URL, bad, { headers: { 'Content-Type': 'application/json' } });

@@ -8,7 +8,6 @@ on:
 
 jobs:
   e2e:
-    # macos runner daha uyumlu Playwright için; eğer private repo ya da macOS kullanmak istemezsen ubuntu'ya geri döneriz.
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +29,7 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           python -m pip install --upgrade pip
-          pip install -r playwright-python/requirements.txt
+          pip install -r requirements.txt
         shell: bash
 
       - name: Install playwright browsers
