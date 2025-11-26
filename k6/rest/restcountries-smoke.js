@@ -5,9 +5,9 @@ export const options = {
   vus: 2,
   duration: '20s',
   thresholds: {
-  'http_req_duration': ['p(95)<3000'],  // önce 3 saniye
-  'http_req_failed': ['rate<0.5'],      // %50 hata kabul
-  'checks': ['rate>0.80'],              // %80 check geçerli
+  'http_req_duration': ['p(95)<3000'],  
+  'http_req_failed': ['rate<0.5'],      
+  'checks': ['rate>0.80'],             
   },
 };
 
@@ -23,7 +23,6 @@ function hasCountryShape(c) {
 }
 
 export default function () {
-  // 1) GET /all
   group('GET /all', () => {
     const res = http.get(`${BASE}/all`);
     check(res, {
@@ -47,7 +46,6 @@ export default function () {
     sleep(1);
   });
 
-  // 2) GET /name/{name} — happy & edge
   group('GET /name/{name}', () => {
     const tests = [
       { url: `${BASE}/name/turkey`, expect: 'Turkey', desc: 'happy: turkey' },
@@ -85,7 +83,6 @@ export default function () {
     }
   });
 
-  // 3) GET /capital/{capital}
   group('GET /capital/{capital}', () => {
     const r = http.get(`${BASE}/capital/ankara`);
     check(r, {
@@ -100,7 +97,6 @@ export default function () {
     sleep(0.5);
   });
 
-  // 4) GET /lang/{code}
   group('GET /lang/{code}', () => {
     const r = http.get(`${BASE}/lang/tr`);
     check(r, {
@@ -112,7 +108,6 @@ export default function () {
     sleep(0.5);
   });
 
-  // 5) GET /alpha/{code}
   group('GET /alpha/{code}', () => {
     const r = http.get(`${BASE}/alpha/TR`);
     check(r, {
@@ -127,7 +122,6 @@ export default function () {
     sleep(0.5);
   });
 
-  // 6) region & currency quick checks
   group('GET /region & /currency', () => {
     const r1 = http.get(`${BASE}/region/europe`);
     check(r1, { 'region/europe: status 200': (res) => res.status === 200 });
