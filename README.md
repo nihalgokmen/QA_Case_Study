@@ -1,6 +1,10 @@
-QA Engineer Case Study — Public APIs x K6 + Playwright
-Setup
-# Clone the repository
+# QA Engineer Case Study — Public APIs x K6 + Playwright
+
+## Setup
+
+Clone the repository and set up the environment:
+
+```bash
 git clone <repo-link>
 cd qa-case-study
 
@@ -12,50 +16,51 @@ source venv/bin/activate   # Mac/Linux
 # Install dependencies
 pip install -r playwright-python/requirements.txt
 playwright install
-
-
 Run tests:
 
+bash
+Copy code
 # K6 tests
 k6 run k6/rest/restcountries-smoke.js
 k6 run k6/graphql/rickmorty-characters.js
 
 # Playwright E2E tests
 pytest playwright-python/tests/
-
 Test Strategy
 Integration Tests (K6, JS)
+Tests are executed on REST and GraphQL public APIs:
 
 REST: Rest Countries v3
 
 GraphQL: Rick & Morty GraphQL
 
-Scenarios: happy-path & edge cases, response time SLAs, schema validation, functional assertions, error handling, basic load testing
+Scenarios tested include happy-path and edge cases, response time SLAs, schema validation, functional assertions, error handling, and basic load testing.
 
 E2E Tests (Playwright, Python)
-
 Demo site: SauceDemo
 
-Scenarios: login success/failure, product listing, add to cart & checkout (payment excluded), optional accessibility checks
+Scenarios tested:
 
-Flakiness controls: stable selectors (data-test), explicit waits, retries
+Login success/failure
 
-Screenshots/video/trace captured on failure
+Product listing and detail view
+
+Add to cart and checkout (payment step excluded)
+
+Optional accessibility checks
+
+Flakiness controls include using stable selectors (data-test attributes), explicit waits, and retries. Screenshots, videos, or traces are captured on failures.
 
 CI / GitHub Actions
-
 Workflows run automatically on Pull Requests:
 
 K6 tests: k6-integration.yml
 
 Playwright tests: playwright-e2e.yml
 
-Test artifacts (screenshots/video) available on failures
-
-K6 performance thresholds logged in workflow
+Test artifacts (screenshots/videos) are available on failures. K6 performance thresholds are logged in the workflow.
 
 Notes
-
 Tests are isolated and idempotent, not dependent on mutable server state
 
 Pytest markers (login, checkout) are registered in pytest.ini
