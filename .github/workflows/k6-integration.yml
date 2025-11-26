@@ -13,13 +13,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install K6
+      - name: Install k6 (official repo)
         run: |
           sudo apt-get update
+          sudo apt-get install -y gnupg2 ca-certificates curl
+          curl -s https://dl.k6.io/key.gpg | sudo apt-key add -
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+          sudo apt-get update
           sudo apt-get install -y k6
+        shell: bash
+
+      - name: Show k6 version
+        run: k6 version
 
       - name: Run REST test
         run: k6 run k6/rest/restcountries-smoke.js
+        shell: bash
 
       - name: Run GraphQL test
         run: k6 run k6/graphql/rickmorty-characters.js
+        shell: bash

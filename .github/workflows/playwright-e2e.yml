@@ -8,7 +8,8 @@ on:
 
 jobs:
   e2e:
-    runs-on: ubuntu-latest
+    # macos runner daha uyumlu Playwright için; eğer private repo ya da macOS kullanmak istemezsen ubuntu'ya geri döneriz.
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -17,17 +18,35 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Create artifact folders (avoid missing artifacts error)
         run: |
+          mkdir -p playwright-python/screenshots
+          mkdir -p playwright-python/videos
+          mkdir -p playwright-python/traces
+        shell: bash
+
+      - name: Install dependencies (venv)
+        run: |
+          python -m venv venv
+          source venv/bin/activate
           python -m pip install --upgrade pip
           pip install -r playwright-python/requirements.txt
+        shell: bash
+
+      - name: Install playwright browsers
+        run: |
+          source venv/bin/activate
           python -m playwright install
+        shell: bash
 
       - name: Run tests
         run: |
+          source venv/bin/activate
           cd playwright-python
           pytest tests/ -q
-      - name: Upload artifacts (screenshots & videos)
+        shell: bash
+
+      - name: Upload artifacts (screenshots & videos & traces)
         if: always()
         uses: actions/upload-artifact@v4
         with:
